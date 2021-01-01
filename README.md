@@ -4,8 +4,7 @@ This prototype is based on the work of tensorflow pose estimation to capture moc
 
 # How to use it?
 
-* Clone [tensorflow pose estimmation](https://github.com/ildoonet/tf-pose-estimation/tree/6980660b6f50653646a33c5a493d4c51d4335a3f)
-* Follow same [instruction](https://github.com/JPfeP/AddRoutes) as authar says.
+* Clone [tensorflow pose estimmation](https://github.com/ildoonet/tf-pose-estimation/tree/6980660b6f50653646a33c5a493d4c51d4335a3f), follow same instructions as author says to run code.
 * Install addon [addroutes](https://github.com/JPfeP/AddRoutes) for blender. 
 * Put src files in tf pose estimtaion src folder.
 * Open blender file.
@@ -16,8 +15,8 @@ This prototype is based on the work of tensorflow pose estimation to capture moc
 * If you have good GPU then use CMU model otherwise you have to run mobilenetthin model.
 
 # TODOS
-* Making gui better.
-* Adding constraints to armature so that it 
-* Using [Videopose](https://github.com/facebookresearch/VideoPose3D) to increase smoothness of aniamtion.
+* Mak gui better.
+* Add constraints to armature so that unrealistic rotation doesnot happen even if values are wrong.
+* Use [Videopose](https://github.com/facebookresearch/VideoPose3D) to increase smoothness of aniamtion.
 
 # This is version 1.0 of "real time 3d pose estimation with Blender". The result is not good at all, I will try to improve it.
