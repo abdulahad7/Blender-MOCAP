@@ -37,7 +37,6 @@ class PoseEstimation(QtWidgets.QMainWindow):
         self._thresholdValue.setEnabled(True)
         self._thresholdValue.textChanged.connect(self.syncThreshold)
         
-        
         self._comboBox.addItem("mobilenet_thin")
         self._comboBox.addItem("cmu")
         
@@ -47,7 +46,6 @@ class PoseEstimation(QtWidgets.QMainWindow):
         self.frame = (0, 0, 0) 
         
         self.camera=0
-          
         self.resolution='432x368'            
         
         self.poseLifting = Prob3dPose('./src/lifting/models/prob_model_params.mat')
@@ -90,7 +88,6 @@ class PoseEstimation(QtWidgets.QMainWindow):
     def averageActive(self):
         if(self._average.isChecked()):
             self._averageValue.setEnabled(True)
-            
         else:
             self._averageValue.setEnabled(False)
             
@@ -99,16 +96,12 @@ class PoseEstimation(QtWidgets.QMainWindow):
     def thresholdActive(self, text):
         if(self._threhold.isChecked()):
             self._thresholdValue.setEnabled(True)
-            
         else:
             self._thresholdValue.setEnabled(False)
             
     def takingAverage(self,arr):
-
         self.keypoints3d.append(arr)
-
         if(len(self.keypoints3d)>self.average):
-            
             self.keypoints3d.pop(0)
         if(len(self.keypoints3d)==self.average):
             return(np.array(self.keypoints3d).mean(axis=0))
@@ -122,11 +115,8 @@ class PoseEstimation(QtWidgets.QMainWindow):
                 for j in range(3):
                     if(self.previouskeypoints3d[i][j]+self.threshold>=keypoints[i][j] and self.previouskeypoints3d[i][j]-self.threshold<=keypoints[i][j]):
                         keypoints[i][j]=self.previouskeypoints3d[i][j]
-            
         return keypoints
         
-    
-    
     def capture(self):
 
         w, h = model_wh(self.resolution)
@@ -144,7 +134,6 @@ class PoseEstimation(QtWidgets.QMainWindow):
             standard_w = 640 
             standard_h = 480
 
-            
             image = TfPoseEstimator.draw_humans(image, humans, imgcopy=False)
             
             cv2.putText(image,
@@ -152,9 +141,6 @@ class PoseEstimation(QtWidgets.QMainWindow):
                         (10, 10),  cv2.FONT_HERSHEY_SIMPLEX, 0.5,
                         (0, 255, 0), 2)
             self.frame = (255,0,0) 
-            
-            
-
             try:
                 pose_2d_mpiis = []
                 visibilities = []
@@ -172,12 +158,8 @@ class PoseEstimation(QtWidgets.QMainWindow):
                 if(self._threhold.isChecked()):
                     keypoints=self.takingThreshold(keypoints)
 
-                                    
-                
                 if(self._average.isChecked()):
                     keypoints=self.takingAverage(keypoints)
-
-                
 
                 self.sendingValuesToBlender(keypoints/1000)
                 self.previouskeypoints3d=keypoints
@@ -186,20 +168,13 @@ class PoseEstimation(QtWidgets.QMainWindow):
                 print(e)
                 self.frame = (0,0,255) 
                 print("error calculating 3d estimations")
-            #imS = cv2.resize(im, (960, 540))
-            #image = cv2.rectangle(image, (5,5), (standard_w-5,standard_h-5), self.frame, 2)
-            # self.cap.set(CV_CAP_PROP_FRAME_WIDTH, 640);
-            # self.cap.set(CV_CAP_PROP_FRAME_HEIGHT, 360);
-
             image = cv2.rectangle(image, (5,5), (image_w-5,image_h-5), self.frame, 2)
             cv2.imshow('2d estimation', image)  
             self.fps_time = time.time()
-            
             print("frameNumber " , self.frameNumber)
             self.frameNumber+=1
             if cv2.waitKey(1) == 27:
                 cv2.destroyAllWindows()
-                
                 break
     
     def sendingValuesToBlender(self,numpyarray):
