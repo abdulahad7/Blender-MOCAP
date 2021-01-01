@@ -1,6 +1,6 @@
 # 3D pose estimation for MOCAP in blender
 
-This prototype is based on the work of tensorflow pose estimation to capture mocap. I just created the Python-to-Blender connection and the rendering in Blender.
+This prototype is based on the work of tensorflow pose estimation to capture mocap. I just created the Python-to-Blender connection and rendering in Blender.
 
 # How to use it?
 
@@ -17,6 +17,6 @@ This prototype is based on the work of tensorflow pose estimation to capture moc
 # TODOS
 * Mak gui better.
 * Add constraints to armature so that unrealistic rotation doesnot happen even if values are wrong.
-* Use [Videopose](https://github.com/facebookresearch/VideoPose3D) to increase smoothness of aniamtion.
+* Use [Videopose](https://github.com/facebookresearch/VideoPose3D) to increase smoothness of animation.
 
 # This is version 1.0 of "real time 3d pose estimation with Blender". The result is not good at all, I will try to improve it.
