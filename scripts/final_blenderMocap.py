@@ -138,6 +138,7 @@ class PoseEstimation(QtWidgets.QMainWindow):
         
     def sendingValuesToBlender(self,numpyarray):
         self.osc = OSCClient(self._address, self._port)
+        
         self.osc.send_message(b'/hip', numpyarray[0])
         self.osc.send_message(b'/rHip', numpyarray[1])
         self.osc.send_message(b'/rKnee',numpyarray[2])
@@ -171,6 +172,7 @@ class PoseEstimation(QtWidgets.QMainWindow):
         
         self.isThreshold.setChecked(True)
         self.isAverage.setChecked(True)
+        self.isRendering.setChecked(True)
         
     def webCameraBox(self,active):
             if active==0:
@@ -247,7 +249,7 @@ class PoseEstimation(QtWidgets.QMainWindow):
             self.isAverage.setEnabled(True)
             self.averageEdit.setEnabled(True)
                     
-    def processData(self):
+    def processData(self):  
         if self.isWebcam.isChecked():
             self.processWebcam()
         elif self.isMP4.isChecked():
@@ -286,7 +288,7 @@ class PoseEstimation(QtWidgets.QMainWindow):
             transformed_pose2d, weights = self.poseLifting.transform_joints(pose_2d_mpiis, visibilities)
             pose_3d = self.poseLifting.compute_3d(transformed_pose2d, weights)
             keypoints = pose_3d[0].transpose()
-            self.sendingValuesToBlender(keypoints/600)
+            self.sendingValuesToBlender(keypoints/1000)
         except Exception as e:
             print(e)
             self.frame = (0,0,255) 
@@ -363,7 +365,7 @@ class PoseEstimation(QtWidgets.QMainWindow):
                 if(self.isAverage.isChecked()):
                     keypoints=self.takingAverage(keypoints)
 
-                self.sendingValuesToBlender(keypoints)
+                self.sendingValuesToBlender(keypoints/1000)
                 self.previouskeypoints3d=keypoints
                 print(keypoints)
             except Exception as e:
