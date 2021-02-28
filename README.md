@@ -16,7 +16,6 @@ This prototype is based on the work of tensorflow pose estimation to capture moc
 
 # TODOS
 * Make gui better.
-* Add constraints to armature so that unrealistic rotation doesnot happen even if values are wrong.
 * Use [Videopose](https://github.com/facebookresearch/VideoPose3D) in future to estimate pose estimation values
 
-# This is version 1.0 of "real time 3d pose estimation with Blender". The result is not good at all, I will try to improve it.
+# This is version 1.0 of "real time 3d pose estimation with Blender". The result is not good at all.
