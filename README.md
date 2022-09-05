@@ -18,4 +18,4 @@ This prototype is based on the work of tensorflow pose estimation to capture moc
 * Make gui better.
 * Use [Videopose](https://github.com/facebookresearch/VideoPose3D) in future to estimate pose estimation values
 
-# This is version 1.0 of "real time 3d pose estimation with Blender". The result is not good at all.
+# This is version 1.0 of "Realtime MOCAP with Blender". Still much things to do in future.
